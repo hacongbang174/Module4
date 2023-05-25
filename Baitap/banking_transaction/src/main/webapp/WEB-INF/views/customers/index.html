@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Title -->
+    <title>Users | Front - Admin &amp; Dashboard Template</title>
+    <!-- Favicon -->
+    <th:block th:replace="/ep/layout/head :: head"/>
+</head>
+<body class="   footer-offset">
+<th:block th:replace="/ep/layout/builder :: builder"/>
+<th:block th:replace="/ep/layout/headerMain :: headerMain"/>
+<th:block th:replace="/ep/layout/plugin :: plugin"/>
+<th:block th:replace="/ep/layout/asidebar :: asidebar"/>
+<th:block th:replace="/ep/layout/searchForm :: search"/>
+<th:block th:replace="/ep/layout/asidebarCompact :: sidebarCompact"/>
+<main id="content" role="main" class="main">
+    <!-- Content -->
+    <div class="container-fluid">
+        <div class="header">
+            <nav class="navbar bg-primary">
+                <div class="container-fluid">
+                    <!--                    <h2>List of customers</h2>-->
+                    <div class="d-flex">
+                        <button id="btnShowCreateModal" class="btn btn-light" style="margin: 2px">
+                            <i class="fas fa-plus"></i>
+                            Create
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="content">
+            <table id="tbStudent" class="table table-hover">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>#</th>
+                    <th>Full name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Date of Birth</th>
+                    <th>Address</th>
+                    <th>Classroom</th>
+                    <th>Action</th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr th:each="student : ${students}">
+
+                            <td th:text="${student.studentId}></td>
+                            <td th:text=" ${student.fullName}></td>
+                            <td th:text="${student.email}></td>
+                            <td th:text=" ${student.phone}></td>
+                            <td th:text="${student.date}></td>
+                            <td th:text=" ${student.address}></td>
+                            <td th:text="${student.classroom}></td>
+                            <td>
+                            <div>
+                                <a class = "btn btn-sm btn-white" th:href="@{/edit/__${student.id}__}">
+                                <i class="tio-edit"></i> Edit
+                                </a>
+                            </div>
+                            <div id="deleteUserPopover">
+                             <a class="btn btn-sm btn-white" th:href="@{/delete/__${student.id}__}"><i class="tio-edit"></i> Delete</a>
+                            </div>
+                            </td>
+                </tr>
+
+
+        </tbody>
+        </table>
+    </div>
+    </div>
+
+    <!-- End Content -->
+    <th:block th:replace="/ep/layout/footer :: footer"/>
+</main>
+<th:block th:replace="/ep/layout/script :: script"/>
+</body>
+</html>
