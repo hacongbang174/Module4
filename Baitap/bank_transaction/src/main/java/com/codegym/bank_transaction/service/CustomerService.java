@@ -10,7 +10,7 @@ import java.util.Optional;
 
 
 @Service
-public class CustomerServiceImpl implements ICustomerService{
+public class CustomerService implements ICustomerService{
     @Autowired
     private ICustomerRepository customerRepository;
 

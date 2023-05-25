@@ -1,173 +1,78 @@
 ﻿<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <!-- Required Meta Tags Always Come First -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Title -->
-    <title>Customers</title>
-
-    <!-- Favicon -->
-    <th:block th:replace="/customers/layout/head :: head"/>
+    <title>List of customers</title>
+    <th:block th:replace="/customers/layout/head :: head"></th:block>
 </head>
 
-<body class="   footer-offset">
-<!--<th:block th:replace="/ep/layout/builder :: builder"/>-->
-<!--<th:block th:replace="/ep/layout/headerMain :: headerMain"/>-->
-<!--<th:block th:replace="/ep/layout/plugin :: plugin"/>-->
-<!--<th:block th:replace="/ep/layout/asidebar :: asidebar"/>-->
-<!--<th:block th:replace="/ep/layout/searchForm :: search"/>-->
-<!--<th:block th:replace="/ep/layout/asidebarCompact :: sidebarCompact"/>-->
-<main id="content" role="main" class="main">
-    <!-- Content -->
-    <div class="content container-fluid">
-        <!-- Page Header -->
-        <th:block th:replace="/customers/layout/filter :: filter"/>
-
-
-        <div class="table-responsive datatable-custom">
-            <div id="datatable_wrapper" class="dataTables_wrapper no-footer">
-                <div id="datatable_filter"
-                     class="dataTables_filter"><label>Search:<input type="search" class="" placeholder=""
-                                                                    aria-controls="datatable"></label></div>
-                <table id="datatable"
-                       class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer"
-                       data-hs-datatables-options="{
-                     &quot;columnDefs&quot;: [{
-                        &quot;targets&quot;: [0, 7],
-                        &quot;orderable&quot;: false
-                      }],
-                     &quot;order&quot;: [],
-                     &quot;info&quot;: {
-                       &quot;totalQty&quot;: &quot;#datatableWithPaginationInfoTotalQty&quot;
-                     },
-                     &quot;search&quot;: &quot;#datatableSearch&quot;,
-                     &quot;entries&quot;: &quot;#datatableEntries&quot;,
-                     &quot;pageLength&quot;: 15,
-                     &quot;isResponsive&quot;: false,
-                     &quot;isShowPaging&quot;: false,
-                     &quot;pagination&quot;: &quot;datatablePagination&quot;
-                   }" role="grid" aria-describedby="datatable_info">
-                    <thead class="thead-light">
-                    <tr role="row">
-                        <th class="table-column-pl-0" tabindex="0" aria-controls="datatable" rowspan="1"
-                            colspan="1" style="width: 51.513px;">
-                            #
-                        </th>
-                        <th class="table-column-pl-0" tabindex="0" aria-controls="datatable" rowspan="1"
-                            colspan="1" style="width: 151.513px;">
-                            Name
-                        </th>
-                        <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
-                            style="width: 159.45px;">Email
-                        </th>
-                        <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
-                            style="width: 143.95px;">Phone
-                        </th>
-                        <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
-                            style="width: 117.75px;">Address
-                        </th>
-                        <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
-                            style="width: 158.438px;">
-                            Balance
-                        </th>
-                        <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
-                            style="width: 158.438px;">
-                            Create Date
-                        </th>
-                        <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
-                            style="width: 158.438px;">
-                            Create By
-                        </th>
-                        <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
-                            style="width: 158.438px;">
-                            Update Date
-                        </th>
-                        <th tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
-                            style="width: 158.438px;">
-                            Update By
-                        </th>
-                        <th rowspan="1" colspan="1" aria-label=""
-                            style="width: 183.488px;">Action
-                        </th>
-                    </tr>
-                    </thead>
-
-                    <tbody>
-
-
-                    <tr role="row" class="odd" th:each="customer : ${customers}">
-                        <td>
-                            <span th:text="${customer.id}"></span>
-                        </td>
-                        <td>
-                            <div class="ml-3">
-                                <a class="d-flex">
-                                    <div>
-                                        <span th:text="${customer.fullName}"></span>
-                                        <!--                                        <span class="d-block font-size-sm text-body" th:text="${student.date}"></span>-->
-                                    </div>
-                                </a>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="d-block h5 mb-0" th:text="${customer.email}"></span>
-                            <!--                            <span class="d-block font-size-sm" th:text="${student.address}"></span>-->
-                        </td>
-                        <td>
-                            <span th:text="${customer.phone}"></span>
-                        </td>
-                        <td>
-                            <span th:text="${customer.address}"></span>
-                        </td>
-                        <td>
-                            <span th:text="${customer.balance}"></span>
-                        </td>
-                        <td>
-                            <span class="d-block font-size-sm text-body" th:text="${customer.created_at}"></span>
-                        </td>
-                        <td>
-                            <span th:text="${customer.update_at}"></span>
-                        </td>
-                        <td>
-                            <span class="d-block font-size-sm text-body" th:text="${customer.update_at}"></span>
-                        </td>
-                        <td>
-                            <span th:text="${customer.update_by}"></span>
-                        </td>
-                        <td>
-                            <div id="editUserPopover">
-                                <a class="btn btn-sm btn-white" th:href="@{/edit/__${customer.id}__}">
-                                    <i class="tio-edit"></i> Edit
-                                </a>
-                            </div>
-                            <div id="deleteUserPopover">
-                                <a class="btn btn-sm btn-white" th:href="@{/delete/__${customer.id}__}">
-                                    <i class="tio-edit"></i> Delete
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <!-- End Table -->
-
-                <!-- Footer -->
-
-                <!-- End Footer -->
-
-
-                <!-- End Card -->
+<body>
+<div class="container">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-5">
+                <h1>List of customers</h1>
             </div>
-            <!-- End Content -->
-
-
+            <div class="col-sm-7">
+                <a href="/customers/create" class="btn btn-outline-light">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Add New Customer</span>
+                </a>
+                <a href="/TransferInfo" class="btn btn-outline-light">
+                    <i class="fa fa-history" aria-hidden="true"></i>
+                    <span>Transfer money Information</span>
+                </a>
+            </div>
         </div>
     </div>
-</main>
 
+    <div>
+        <table class="table table-hover table-borderless">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Balance</th>
+                <th colspan="5" class="text-center">Action</th>
+            </tr>
+            </thead>
+            <tbody id="tbCustomer">
+            <th:block th:each="customer : ${customers}">
+                <tr>
+                    <td th:text="${customer.id}"></td>
+                    <td th:text="${customer.full_name}"></td>
+                    <td th:text="${customer.email}"></td>
+                    <td th:text="${customer.phone}"></td>
+                    <td th:text="${customer.address}"></td>
+                    <td th:text="${customer.balance}"></td>
+                    <td class="text-center">
+                        <a title="Edit" th:href="@{/customers/edit/{id}(id=${customer.id})}" class="btn btn-outline-primary">
+                            <i class="fas fa-user-edit"></i>
+                        </a>
+                        <a title="Deposit" href="/deposit?id=${customer.getId()}" class="btn btn-outline-secondary">
+                            <i class="fas fa-plus-circle"></i>
+                        </a>
+                        <a title="Withdraw" href="/withdraw?id=${customer.getId()}" class="btn btn-outline-success">
+                            <i class="fas fa-minus-circle"></i>
+                        </a>
+                        <a title="Transfer" href="/transfer?id=${customer.getId()}" class="btn btn-outline-warning">
+                            <i class="fas fa-exchange-alt"></i>
+                        </a>
+                        <a title="Suspend" th:href="@{/customers/suspend/{id}(id=${customer.id})}" class="btn btn-outline-danger">
+                            <i class="fas fa-ban"></i>
+                        </a>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+</div>
 
-<th:block th:replace="/customers/layout/script :: script"/>
+<th:block th:replace="/customers/layout/script :: script"></th:block>
+
 </body>
 </html>

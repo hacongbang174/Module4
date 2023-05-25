@@ -1,18 +1,12 @@
-package com.banking.service;
+package com.codegym.bank_transaction.service;
 
 
-import com.banking.dto.CustomerDTO;
-import com.banking.model.Customer;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.query.Param;
+import com.codegym.bank_transaction.model.Customer;
 
 import java.util.List;
 
-public interface ICustomerService extends IGeneralService<Customer> {
+public interface ICustomerService extends IGenaralService<Customer> {
 
-    List<CustomerDTO> findAllDTO();
-
-    CustomerDTO findCustomerDTOById(long id);
 
     boolean addNewCustomer(String name, String email, String phone, String address);
 

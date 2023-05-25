@@ -1,148 +1,108 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!-- Required Meta Tags Always Come First -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Title -->
-    <title>Customers | Front - Admin &amp; Dashboard Template</title>
-    <!-- Favicon -->
-    <th:block th:replace="/customers/layout/head :: head"/>
+    <title>Transfer</title>
+    <th:block th:replace="/customers/layout/head :: head"></th:block>
 </head>
-<body class="   footer-offset">
-<!--<th:block th:replace="/ep/layout/builder :: builder"/>-->
-<!--<th:block th:replace="/ep/layout/headerMain :: headerMain"/>-->
-<!--<th:block th:replace="/ep/layout/plugin :: plugin"/>-->
-<!--<th:block th:replace="/ep/layout/asidebar :: asidebar"/>-->
-<!--<th:block th:replace="/ep/layout/searchForm :: search"/>-->
-<!--<th:block th:replace="/ep/layout/asidebarCompact :: sidebarCompact"/>-->
-<main id="content" role="main" class="main">
-    <!-- Content -->
 
-
-    <div class="row justify-content-lg-center mt-5">
-
-        <div class="col-lg-8">
-            <!-- Step -->
-            <form th:object="${customer}" method="post">
-                <!-- End Step -->
-
-                <!-- Content Step Form -->
-                <div id="addUserStepFormContent">
-                    <!-- Card -->
-                    <div id="addUserStepProfile" class="card card-lg active">
-                        <!-- Body -->
-                        <div class="card-body">
-                            <!-- Form Group -->
-                            <h1>Delete student</h1>
-                            <!-- End Form Group -->
-
-                            <!-- Form Group -->
-                            <div class="row form-group">
-                                <label for="firstNameLabel" class="col-sm-3 col-form-label input-label">Full name <i
-                                        class="tio-help-outlined text-body ml-1" data-toggle="tooltip"
-                                        data-placement="top"
-                                        title=""
-                                        data-original-title="Displayed on public forums, such as Front."></i></label>
-
-                                <div class="col-sm-9">
-                                    <div class="input-group input-group-sm-down-break">
-                                        <input type="text" class="form-control" name="firstName" id="firstNameLabel"
-                                               placeholder="Clarice" aria-label="Clarice" th:field="*{fullName}">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Form Group -->
-
-                            <!-- Form Group -->
-                            <div class="row form-group">
-                                <label for="emailLabel" class="col-sm-3 col-form-label input-label">Email</label>
-
-                                <div class="col-sm-9">
-                                    <input type="email" class="form-control" name="email" id="emailLabel"
-                                           placeholder="clarice@example.com" aria-label="clarice@example.com"
-                                           th:field="*{email}">
-                                </div>
-                            </div>
-                            <!-- End Form Group -->
-
-                            <!-- Form Group -->
-                            <div class="js-add-field row form-group" data-hs-add-field-options="{
-                            &quot;template&quot;: &quot;#addPhoneFieldTemplate&quot;,
-                            &quot;container&quot;: &quot;#addPhoneFieldContainer&quot;,
-                            &quot;defaultCreated&quot;: 0
-                          }" th:object="${student}">
-                                <label for="phoneLabel" class="col-sm-3 col-form-label input-label">Phone<span
-                                        class="input-label-secondary">(Optional)</span></label>
-
-                                <div class="col-sm-9">
-                                    <div class="input-group input-group-sm-down-break align-items-center">
-                                        <input th:field="*{phone}" type="text" class="js-masked-input form-control"
-                                               name="phone" id="phoneLabel"
-                                               placeholder="+x(xxx)xxx-xx-xx" aria-label="+x(xxx)xxx-xx-xx"
-                                               data-hs-mask-options="{
-                                   &quot;template&quot;: &quot;+0(000)000-00-00&quot;
-                                 }" maxlength="16">
-
-                                        <div class="input-group-append">
-
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <!-- Container For Input Field -->
-                                <div id="addPhoneFieldContainer"></div>
-                            </div>
-                            <div class="row form-group">
-                                <label for="departmentLabel" class="col-sm-3 col-form-label input-label">Address</label>
-
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="department" id="departmentLabel"
-                                           placeholder="Address" aria-label="Human resources" th:field="*{address}">
-                                </div>
-                            </div>
-                            <div class="row form-group">
-                                <label for="organizationLabel"
-                                       class="col-sm-3 col-form-label input-label">Classroom</label>
-
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="organization" id="organizationLabel"
-                                           placeholder="ext: Director " aria-label="Htmlstream" th:field="*{classroom}">
-                                </div>
-                            </div>
-                            <!--              <div class="row form-group">-->
-                            <!--                <label class="col-sm-3 col-form-label input-label">Date of Birth</label>-->
-                            <!--                <div class="col-sm-9">-->
-                            <!--                  <input type="text" class="form-control" th:field="*{date}">-->
-                            <!--                </div>-->
-                            <!--              </div>-->
-
-                            <div class="card-footer d-flex justify-content-end align-items-center">
-                                <button type="submit" class="btn btn-primary">
-                                    Delete
-                                </button>
-                            </div>
-                            <!-- End Custom Radio -->
-                        </div>
-                    </div>
-                </div>
-            </form>
+<body>
+<div class="container">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-5">
+                <h1>Transfer</h1>
+            </div>
+            <div class="col-sm-7">
+                <a href="./" class="btn btn-outline-light">
+                    <i class="fa-solid fa-bars"></i>
+                    <span>List of customers</span>
+                </a>
+            </div>
         </div>
-
-
     </div>
-
-
+    <div>
+        <form method="post" autocomplete="off">
+            <div class="row mt-3">
+                <div class="mb-3 float-left col-lg-3 col-sm-12 col-md-6">
+                    <label for="senderID" class="form-label">Sender ID</label>
+                    <input type="number" class="form-control" id="senderID"
+                           value="${sender.getId()}" readonly
+                    >
+                </div>
+                <div class="mb-3 float-left col-lg-3 col-sm-12 col-md-6">
+                    <label for="senderName" class="form-label">Sender Name</label>
+                    <input type="text" class="form-control" id="senderName"
+                           value="${sender.getFullName()}" readonly
+                    >
+                </div>
+                <div class="mb-3 float-left col-lg-3 col-sm-12 col-md-6">
+                    <label for="email" class="form-label">Sender Email</label>
+                    <input type="email" class="form-control" id="email"
+                           value="${sender.getEmail()}" readonly
+                    >
+                </div>
+                <div class="mb-3 float-left col-lg-3 col-sm-12 col-md-6">
+                    <label for="balance" class="form-label">Sender Balance</label>
+                    <input type="number" class="form-control" id="balance"
+                           value="${sender.getBalance()}" readonly
+                    >
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="mb-3 float-left col-lg-3 col-sm-12 col-md-6">
+                    <label for="recipientName" class="form-label">Recipient Name</label>
+                    <select id="recipientName" name="recipientId" class="form-control">
+                        <th:block  th:each="recipient :${recipients}">
+                            <option th:value="recipient.id" th:text="recipient.fullName"></option>
+                        </th:block>
+                    </select>
+                </div>
+                <div class="mb-3 float-left col-lg-3 col-sm-12 col-md-6">
+                    <label for="transfer" class="form-label">Transfer Amount (VND)</label>
+                    <input type="number" class="form-control" id="transfer" name="transfer" value="0">
+                </div>
+                <div class="mb-3 float-left col-lg-3 col-sm-12 col-md-6">
+                    <label for="fees" class="form-label">Fee (%)</label>
+                    <input type="number" class="form-control" id="fees" value="10" readonly>
+                </div>
+                <div class="mb-3 float-left col-lg-3 col-sm-12 col-md-6">
+                    <label for="total" class="form-label">Total Amount (VND)</label>
+                    <input type="number" class="form-control" id="total" value="0" readonly>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-outline-warning">
+                <i class="fas fa-exchange-alt"></i>
+                Transfer
+            </button>
+        </form>
     </div>
-
-
+</div>
+<div th:if="${transferred}" class="fixed-bottom alert alert-success alert-dismissible">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    <strong th:text="${message}"></strong>
+</div>
+<div th:unless="${transferred}" class="fixed-bottom alert alert-danger alert-dismissible">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    <strong th:text="${message}"></strong>
+</div>
+<th:block th:if="${error}">
+    <div class="fixed-bottom alert alert-danger">
+        <button type="button" class="btn"></button>
+        <strong th:text="${error}"></strong>
     </div>
-    </div>
+</th:block>
 
-    <!-- End Content -->
+<th:block th:replace="/customers/layout/operation-status :: operation-status"></th:block>
 
-</main>
-<th:block th:replace="/customers/layout/script :: script"/>
+<th:block th:replace="/customers/layout/script :: script"></th:block>
+<script>
+    document.addEventListener("input", () =>{
+        let fee = Number(document.getElementById("fees").value);
+        let transferAmount = Number(document.getElementById("transfer").value);
+        let transactionFee =  transferAmount * fee / 100;
+        document.getElementById("total").value = transactionFee + transferAmount;
+    })
+</script>
 </body>
+
 </html>

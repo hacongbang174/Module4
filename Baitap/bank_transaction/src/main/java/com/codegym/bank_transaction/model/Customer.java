@@ -1,10 +1,6 @@
-package com.banking.model;
+package com.codegym.bank_transaction.model;
 
 import javax.persistence.*;
-import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -18,21 +14,15 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", length = 200, nullable = false)
-    private String fullName;
+    private String full_name;
 
     @Column(unique = true, nullable = false)
     private String email;
-
-    @Column(unique = true, nullable = false)
     private String phone;
-
-    @Column(length = 300)
     private String address;
 
     @Column(precision = 12, columnDefinition = "decimal default 0")
     private BigDecimal balance;
-
     private Date createdAt;
     private Long createdBy;
     private Date updatedAt;
@@ -47,8 +37,18 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String fullName, String email, String phone, String address, BigDecimal balance, Date createdAt, long createdBy, Date updatedAt, long updatedBy, boolean deleted) {
-        this.fullName = fullName;;
+    public Customer(Long id, String full_name, String email, String phone, String address, BigDecimal balance, boolean deleted) {
+        this.id = id;
+        this.full_name = full_name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.balance = balance;
+        this.deleted = deleted;
+    }
+
+    public Customer(String full_name, String email, String phone, String address, BigDecimal balance, Date createdAt, long createdBy, Date updatedAt, long updatedBy, boolean deleted) {
+        this.full_name = full_name;;
         this.email = email;
         this.phone = phone;
         this.address = address;
@@ -68,12 +68,12 @@ public class Customer {
         this.id = id;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getFull_name() {
+        return full_name;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setFull_name(String fullName) {
+        this.full_name = fullName;
     }
 
     public String getEmail() {
@@ -153,12 +153,12 @@ public class Customer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
-        return id == customer.id && createdBy == customer.createdBy && updatedBy == customer.updatedBy && deleted == customer.deleted && Objects.equals(fullName, customer.fullName) && Objects.equals(email, customer.email) && Objects.equals(phone, customer.phone) && Objects.equals(address, customer.address) && Objects.equals(balance, customer.balance) && Objects.equals(createdAt, customer.createdAt) && Objects.equals(updatedAt, customer.updatedAt);
+        return id == customer.id && createdBy == customer.createdBy && updatedBy == customer.updatedBy && deleted == customer.deleted && Objects.equals(full_name, customer.full_name) && Objects.equals(email, customer.email) && Objects.equals(phone, customer.phone) && Objects.equals(address, customer.address) && Objects.equals(balance, customer.balance) && Objects.equals(createdAt, customer.createdAt) && Objects.equals(updatedAt, customer.updatedAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, fullName, email, phone, address, balance, createdAt, createdBy, updatedAt, updatedBy, deleted);
+        return Objects.hash(id, full_name, email, phone, address, balance, createdAt, createdBy, updatedAt, updatedBy, deleted);
     }
 
 }

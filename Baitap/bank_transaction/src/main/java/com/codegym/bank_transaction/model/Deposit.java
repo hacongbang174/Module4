@@ -1,4 +1,4 @@
-package com.banking.model;
+package com.codegym.bank_transaction.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -11,32 +11,28 @@ public class Deposit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false)
-    private BigDecimal transactionAmount;
-
     private Date createdAt;
     private Long createdBy;
-    private Date updatedAt;
-    private Long updatedBy;
-
     @Column(columnDefinition = "boolean default false")
     private boolean deleted;
-
+    private Date updatedAt;
+    private Long updatedBy;
     @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
+    @Column(nullable = false)
+    private BigDecimal transactionAmount;
 
     public Deposit() {
     }
 
-    public Deposit(BigDecimal transactionAmount, Date createdAt, long createdBy, Date updatedAt, long updatedBy, boolean deleted) {
-        this.transactionAmount = transactionAmount;
+    public Deposit( Date createdAt, long createdBy, boolean deleted, Date updatedAt, long updatedBy, BigDecimal transactionAmount ) {
         this.createdAt = createdAt;
         this.createdBy = createdBy;
+        this.deleted = deleted;
         this.updatedAt = updatedAt;
         this.updatedBy = updatedBy;
-        this.deleted = deleted;
+        this.transactionAmount = transactionAmount;
     }
 
     public long getId() {
@@ -47,14 +43,6 @@ public class Deposit {
         this.id = id;
     }
 
-    public BigDecimal getTransactionAmount() {
-        return transactionAmount;
-    }
-
-    public void setTransactionAmount(BigDecimal transactionAmount) {
-        this.transactionAmount = transactionAmount;
-    }
-
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -63,12 +51,20 @@ public class Deposit {
         this.createdAt = createdAt;
     }
 
-    public long getCreatedBy() {
+    public Long getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(long createdBy) {
+    public void setCreatedBy(Long createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     public Date getUpdatedAt() {
@@ -79,20 +75,28 @@ public class Deposit {
         this.updatedAt = updatedAt;
     }
 
-    public long getUpdatedBy() {
+    public Long getUpdatedBy() {
         return updatedBy;
     }
 
-    public void setUpdatedBy(long updatedBy) {
+    public void setUpdatedBy(Long updatedBy) {
         this.updatedBy = updatedBy;
     }
 
-    public boolean isDeleted() {
-        return deleted;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setDeleted(boolean deleted) {
-        this.deleted = deleted;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public BigDecimal getTransactionAmount() {
+        return transactionAmount;
+    }
+
+    public void setTransactionAmount(BigDecimal transactionAmount) {
+        this.transactionAmount = transactionAmount;
     }
 }
 
