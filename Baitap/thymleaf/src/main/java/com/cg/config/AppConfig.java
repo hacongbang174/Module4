@@ -1,9 +1,6 @@
 package com.cg.config;
 
-import com.cg.repository.CustomerRepository;
-import com.cg.repository.ICustomerRepository;
-import com.cg.service.CustomerService;
-import com.cg.service.ICustomerService;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -75,7 +72,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         return viewResolver;
     }
 
-    //Cấu hình JPA
+//    Cấu hình JPA
     @Bean
     @Qualifier(value = "entityManager")
     public EntityManager entityManager(EntityManagerFactory entityManagerFactory) {
@@ -98,7 +95,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/m4_banking_transaction");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/");
         dataSource.setUsername("root");
         dataSource.setPassword("Anhvanmo.123");
         return dataSource;
@@ -130,14 +127,5 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         messageSource.setBasenames("validation-message");
         return messageSource;
-    }
-    @Bean
-    public ICustomerRepository customerRepository() {
-        return new CustomerRepository();
-    }
-
-    @Bean
-    public ICustomerService customerService() {
-        return new CustomerService();
     }
 }

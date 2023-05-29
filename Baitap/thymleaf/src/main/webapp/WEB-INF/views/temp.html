@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="/layout/head :: head"></th:block>
+</head>
+
+<body>
+<div id="wrapper">
+    <th:block th:replace="/layout/topbar :: topbar"></th:block>
+    <th:block th:replace="/layout/left-sidebar :: left-sidebar"></th:block>
+
+    <div class="content-page">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="#">Minton</a></li>
+                                    <li class="breadcrumb-item active">Dashboard</li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title">Welcome !</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                <!-- Page content -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <th:block th:replace="/layout/footer :: footer"></th:block>
+</div>
+
+<th:block th:replace="/layout/script :: script"></th:block>
+</body>
+</html>
