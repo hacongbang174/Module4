@@ -1,6 +1,14 @@
 package com.cg.model;
 
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -11,28 +19,36 @@ public class Deposit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date created_at;
-    private Long created_by;
+    @CreationTimestamp
+    @Column(updatable = false)
+    private Date createdAt;
+    private Long createdBy;
     @Column(columnDefinition = "boolean default false")
     private boolean deleted;
-    private Date updated_at;
-    private Long updated_by;
+    @UpdateTimestamp
+    private Date updatedAt;
+    private Long updatedBy;
     @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
-    @Column(nullable = false)
-    private BigDecimal transaction_amount;
+    @Column(nullable = false, precision = 12)
+    @NotNull(message = "Transaction amount must NOT be empty.")
+    @Digits(integer = 12, fraction = 0,
+            message = "Maximum digit of transaction amount is 12.")
+    @Min(value = 100,message = "Transaction amount must NOT be LESS than 100.")
+    @Max(value = 999999999999L,message = "Transaction amount must NOT be GREATER than 999,999,999,999.")
+    private BigDecimal transactionAmount;
 
     public Deposit() {
     }
 
-    public Deposit(Date created_at, long created_by, boolean deleted, Date updated_at, long updated_by, BigDecimal transaction_amount) {
-        this.created_at = created_at;
-        this.created_by = created_by;
+    public Deposit(Date createdAt, long createdBy, boolean deleted, Date updatedAt, long updatedBy, BigDecimal transactionAmount) {
+        this.createdAt = createdAt;
+        this.createdBy = createdBy;
         this.deleted = deleted;
-        this.updated_at = updated_at;
-        this.updated_by = updated_by;
-        this.transaction_amount = transaction_amount;
+        this.updatedAt = updatedAt;
+        this.updatedBy = updatedBy;
+        this.transactionAmount = transactionAmount;
     }
 
     public long getId() {
@@ -43,20 +59,20 @@ public class Deposit {
         this.id = id;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Long getCreated_by() {
-        return created_by;
+    public Long getCreatedBy() {
+        return createdBy;
     }
 
-    public void setCreated_by(Long created_by) {
-        this.created_by = created_by;
+    public void setCreatedBy(Long createdBy) {
+        this.createdBy = createdBy;
     }
 
     public boolean isDeleted() {
@@ -67,20 +83,20 @@ public class Deposit {
         this.deleted = deleted;
     }
 
-    public Date getUpdated_at() {
-        return updated_at;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(Date updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
-    public Long getUpdated_by() {
-        return updated_by;
+    public Long getUpdatedBy() {
+        return updatedBy;
     }
 
-    public void setUpdated_by(Long updated_by) {
-        this.updated_by = updated_by;
+    public void setUpdatedBy(Long updatedBy) {
+        this.updatedBy = updatedBy;
     }
 
     public Customer getCustomer() {
@@ -91,12 +107,12 @@ public class Deposit {
         this.customer = customer;
     }
 
-    public BigDecimal getTransaction_amount() {
-        return transaction_amount;
+    public BigDecimal getTransactionAmount() {
+        return transactionAmount;
     }
 
-    public void setTransaction_amount(BigDecimal transaction_amount) {
-        this.transaction_amount = transaction_amount;
+    public void setTransactionAmount(BigDecimal transactionAmount) {
+        this.transactionAmount = transactionAmount;
     }
 }
 

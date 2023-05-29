@@ -1,12 +1,12 @@
 package com.cg.service;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IGenaralService <T>{
     List<T> findAll();
 
-    T findById(Long id);
-    List<T> findRecipients(Long id);
+    Optional<T> findById(Long id);
 
     void save(T t);
 

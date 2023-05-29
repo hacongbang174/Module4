@@ -1,6 +1,12 @@
 package com.cg.model;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -11,72 +17,82 @@ public class Transfer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date created_at;
-    private Long created_by;
+    @CreationTimestamp
+    @Column(updatable = false)
+    private Date createdAt;
+    private Long createdBy;
     @Column(columnDefinition = "boolean default false")
     private boolean deleted;
-    private Date updated_at;
-    private Long updated_by;
+    @UpdateTimestamp
+    private Date updatedAt;
+    private Long updatedBy;
     @Column(nullable = false)
     private BigDecimal fees;
     @Column(nullable = false)
-    private BigDecimal fees_amount;
+    private BigDecimal feesAmount;
 
-    @Column(nullable = false)
-    private BigDecimal transaction_amount;
-    @Column(nullable = false)
-    private BigDecimal transfer_amount;
-    private Long recipient_id;
-    private Long sender_id;
+    @Column(nullable = false, precision = 12)
+    @NotNull(message = "Total amount must NOT be empty.")
+    @Digits(integer = 12, fraction = 0,
+            message = "Maximum digit of Total amount is 12.")
+    private BigDecimal transactionAmount;
+
+    @Column(nullable = false, precision = 12)
+    @NotNull(message = "Transaction amount must NOT be empty.")
+    @Digits(integer = 12, fraction = 0,
+            message = "Maximum digit of transaction amount is 12.")
+    @Min(value = 100,message = "Transaction amount must NOT be LESS than 100.")
+    private BigDecimal transferAmount;
+
+    @ManyToOne
+    @JoinColumn(name = "recipient_id", referencedColumnName = "id")
+    private Customer recipient;
+    @ManyToOne
+    @JoinColumn(name = "sender_id", referencedColumnName = "id")
+    private Customer sender;
 
     public Transfer() {
+        this.sender = new Customer((long) 0);
+        this.recipient = new Customer((long) 0);
     }
 
-    public Transfer(BigDecimal fees, BigDecimal fees_amount, BigDecimal transaction_amount, BigDecimal transfer_amount, Long recipient_id, Long sender_id) {
-        this.fees = fees;
-        this.fees_amount = fees_amount;
-        this.transaction_amount = transaction_amount;
-        this.transfer_amount = transfer_amount;
-        this.recipient_id = recipient_id;
-        this.sender_id = sender_id;
-    }
-
-    public Transfer(Date created_at, long created_by, boolean deleted, Date updated_at, long updated_by, BigDecimal fees, BigDecimal feesAmount, BigDecimal transaction_amount, BigDecimal transferAmount, Long recipientId, Long senderId) {
-        this.created_at = created_at;
-        this.created_by = created_by;
+    public Transfer(Long id, Date createdAt, Long createdBy, boolean deleted, Date updatedAt, Long updatedBy, BigDecimal fees, BigDecimal feesAmount, BigDecimal transactionAmount, BigDecimal transferAmount, Customer recipient, Customer sender) {
+        this.id = id;
+        this.createdAt = createdAt;
+        this.createdBy = createdBy;
         this.deleted = deleted;
-        this.updated_at = updated_at;
-        this.updated_by = updated_by;
+        this.updatedAt = updatedAt;
+        this.updatedBy = updatedBy;
         this.fees = fees;
-        fees_amount = feesAmount;
-        this.transaction_amount = transaction_amount;
-        transfer_amount = transferAmount;
-        recipient_id = recipientId;
-        sender_id = senderId;
+        this.feesAmount = feesAmount;
+        this.transactionAmount = transactionAmount;
+        this.transferAmount = transferAmount;
+        this.recipient = recipient;
+        this.sender = sender;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Long getCreated_by() {
-        return created_by;
+    public Long getCreatedBy() {
+        return createdBy;
     }
 
-    public void setCreated_by(Long created_by) {
-        this.created_by = created_by;
+    public void setCreatedBy(Long createdBy) {
+        this.createdBy = createdBy;
     }
 
     public boolean isDeleted() {
@@ -87,20 +103,20 @@ public class Transfer {
         this.deleted = deleted;
     }
 
-    public Date getUpdated_at() {
-        return updated_at;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(Date updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
-    public Long getUpdated_by() {
-        return updated_by;
+    public Long getUpdatedBy() {
+        return updatedBy;
     }
 
-    public void setUpdated_by(Long updated_by) {
-        this.updated_by = updated_by;
+    public void setUpdatedBy(Long updatedBy) {
+        this.updatedBy = updatedBy;
     }
 
     public BigDecimal getFees() {
@@ -111,44 +127,44 @@ public class Transfer {
         this.fees = fees;
     }
 
-    public BigDecimal getFees_amount() {
-        return fees_amount;
+    public BigDecimal getFeesAmount() {
+        return feesAmount;
     }
 
-    public void setFees_amount(BigDecimal fees_amount) {
-        this.fees_amount = fees_amount;
+    public void setFeesAmount(BigDecimal feesAmount) {
+        this.feesAmount = feesAmount;
     }
 
-    public BigDecimal getTransfer_amount() {
-        return transfer_amount;
+    public BigDecimal getTransactionAmount() {
+        return transactionAmount;
     }
 
-    public void setTransfer_amount(BigDecimal transfer_amount) {
-        this.transfer_amount = transfer_amount;
+    public void setTransactionAmount(BigDecimal transactionAmount) {
+        this.transactionAmount = transactionAmount;
     }
 
-    public BigDecimal getTransaction_amount() {
-        return transaction_amount;
+    public BigDecimal getTransferAmount() {
+        return transferAmount;
     }
 
-    public void setTransaction_amount(BigDecimal transaction_amount) {
-        this.transaction_amount = transaction_amount;
+    public void setTransferAmount(BigDecimal transferAmount) {
+        this.transferAmount = transferAmount;
     }
 
-    public Long getRecipient_id() {
-        return recipient_id;
+    public Customer getRecipient() {
+        return recipient;
     }
 
-    public void setRecipient_id(Long recipient_id) {
-        this.recipient_id = recipient_id;
+    public void setRecipient(Customer recipient) {
+        this.recipient = recipient;
     }
 
-    public Long getSender_id() {
-        return sender_id;
+    public Customer getSender() {
+        return sender;
     }
 
-    public void setSender_id(Long sender_id) {
-        this.sender_id = sender_id;
+    public void setSender(Customer sender) {
+        this.sender = sender;
     }
 }
 

@@ -1,9 +1,7 @@
 package com.cg.config;
 
-import com.cg.repository.CustomerRepository;
-import com.cg.repository.ICustomerRepository;
-import com.cg.service.CustomerService;
-import com.cg.service.ICustomerService;
+import com.cg.service.customer.CustomerService;
+import com.cg.service.customer.ICustomerService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -98,7 +96,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/m4_banking_transaction");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/m4_banking_transaction_repository");
         dataSource.setUsername("root");
         dataSource.setPassword("Anhvanmo.123");
         return dataSource;
