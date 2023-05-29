@@ -1,6 +1,7 @@
 package com.cg.service.transfer;
 
 import com.cg.model.Transfer;
+import com.cg.model.dto.TransferInfoDTO;
 import com.cg.repository.ITransferRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,11 @@ public class TransferService implements ITransferService{
     }
 
     @Override
+    public Transfer getById(Long id) {
+        return transferRepository.getOne(id);
+    }
+
+    @Override
     public void save(Transfer transfer) {
         transferRepository.save(transfer);
     }
@@ -32,5 +38,10 @@ public class TransferService implements ITransferService{
     @Override
     public void remove(Long id) {
         transferRepository.deleteById(id);
+    }
+
+    @Override
+    public List<TransferInfoDTO> getTransferInfo() {
+        return transferRepository.getTransferInfo();
     }
 }

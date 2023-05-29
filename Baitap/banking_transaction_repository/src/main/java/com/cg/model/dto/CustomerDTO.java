@@ -1,7 +1,5 @@
 package com.cg.model.dto;
 
-
-
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotEmpty;

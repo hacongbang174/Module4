@@ -13,8 +13,8 @@ import java.util.Date;
 
 @Entity
 @Immutable
-@Table(name = "`vw_transfer_information`")
-@Subselect("SELECT * FROM vw_transfer_information")
+@Table(name = "`vw_transfer_info`")
+@Subselect("SELECT * FROM vw_transfer_info")
 public class TransferInfoDTO {
     @javax.persistence.Id
     @Id

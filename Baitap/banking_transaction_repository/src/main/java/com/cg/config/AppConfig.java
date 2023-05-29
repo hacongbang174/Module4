@@ -129,13 +129,4 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         messageSource.setBasenames("validation-message");
         return messageSource;
     }
-    @Bean
-    public ICustomerRepository customerRepository() {
-        return new CustomerRepository();
-    }
-
-    @Bean
-    public ICustomerService customerService() {
-        return new CustomerService();
-    }
 }
