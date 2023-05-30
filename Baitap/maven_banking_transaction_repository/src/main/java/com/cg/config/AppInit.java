@@ -1,11 +1,12 @@
 package com.cg.config;
 
-import groovyjarjarantlr4.v4.runtime.misc.NotNull;
+
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.Filter;
+import javax.validation.constraints.NotNull;
 
 public class AppInit extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override

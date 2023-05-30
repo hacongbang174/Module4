@@ -23,8 +23,8 @@
         <form method="post" autocomplete="off" th:object="${customerDTO}">
             <div class="row mt-3">
                 <div class="col-md-6 mb-3">
-                    <label for="full_name" class="form-label">Full Name</label>
-                    <input type="text" class="form-control" id="full_name" name="name" th:field="*{fullName}">
+                    <label for="fullName" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="fullName" name="fullName" th:field="*{fullName}">
                 </div>
 
                 <div class="col-md-6 mb-3">
@@ -48,16 +48,6 @@
             </button>
         </form>
     </div>
-</div>
-
-<div th:if="${hasError}" class="error">
-    <p>There are validation errors:</p>
-    <ul>
-        <!-- Lặp qua danh sách lỗi và hiển thị chúng -->
-        <li th:each="error : ${#fields.errors('customerDTO.*')}">
-            <span th:text="${error}"></span>
-        </li>
-    </ul>
 </div>
 
 <th:block th:replace="/customers/layout/operation-status :: operation-status"></th:block>

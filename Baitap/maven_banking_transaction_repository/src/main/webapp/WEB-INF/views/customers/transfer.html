@@ -32,7 +32,7 @@
                 <div class="mb-3 float-left col-lg-3 col-sm-12 col-md-6">
                     <label for="senderName" class="form-label">Sender Name</label>
                     <input type="text" class="form-control" id="senderName"
-                           th:value="${sender.full_name}" readonly
+                           th:value="${sender.fullName}" readonly
                     >
                 </div>
                 <div class="mb-3 float-left col-lg-3 col-sm-12 col-md-6">
@@ -53,7 +53,7 @@
                     <label for="recipientName" class="form-label">Recipient Name</label>
                     <select id="recipientName" name="recipientId" class="form-control">
                         <th:block  th:each="recipient :${recipients}">
-                            <option th:value="*{recipient.id}" th:text="*{recipient.full_name}"></option>
+                            <option th:value="*{recipient.id}" th:text="*{recipient.fullName}"></option>
                         </th:block>
                     </select>
                 </div>

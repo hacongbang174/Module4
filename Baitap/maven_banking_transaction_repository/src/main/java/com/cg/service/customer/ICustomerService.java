@@ -5,6 +5,7 @@ import com.cg.model.Customer;
 import com.cg.model.dto.CustomerDTO;
 import com.cg.service.IGenaralService;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface ICustomerService extends IGenaralService<Customer> {
@@ -18,15 +19,12 @@ public interface ICustomerService extends IGenaralService<Customer> {
     boolean existsByIdAndDeletedFalse(long id);
 
     void suspendCustomer(long id);
-    boolean existsByFullName(String name);
+
+    void deposit (long id, BigDecimal amount);
 
     boolean existsByEmail(String email);
 
     boolean existsByPhone(String phone);
-
-    boolean existsByPhoneAndIdIsNot(String phone, long id);
-
-    boolean existsByEmailAndIdIsNot(String email, long id);
 
     List<Customer> findAllByIdIsNotAndDeletedFalse(long id);
 

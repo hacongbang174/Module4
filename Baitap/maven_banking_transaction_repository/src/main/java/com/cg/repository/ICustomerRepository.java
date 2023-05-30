@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
@@ -41,7 +42,7 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
     @Query(value = "CALL insert_customer(:name, :email, :phone, :address)",nativeQuery = true)
     boolean addNewCustomer(@Param("name") String name,@Param("email") String email,@Param("phone") String phone,@Param("address") String address);
 
-    @Query(value = "CALL insert_customer(:id, :name, :email, :phone, :address)",nativeQuery = true)
+    @Query(value = "CALL update_customer(:id, :name, :email, :phone, :address)",nativeQuery = true)
     boolean updateCustomer(@Param("id") long id,@Param("name") String name,@Param("email") String email,@Param("phone") String phone,@Param("address") String address);
 
     @Modifying
@@ -51,16 +52,18 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
             "WHERE c.id = :id")
     void suspendCustomer(@Param("id") long id);
 
+    @Modifying
+    @Transactional
+    @Query("UPDATE Customer c " +
+            "SET c.balance = :amount " +
+            "WHERE c.id = :id")
+    void deposit(@Param("id") long id, @Param("amount") BigDecimal amount);
+
     List<Customer> findAllByIdIsNotAndDeletedFalse(long id);
-    boolean existsByFullName(String name);
 
     boolean existsByEmail(String email);
 
     boolean existsByPhone(String phone);
-
-    boolean existsByPhoneAndIdIsNot(String phone, long id);
-
-    boolean existsByEmailAndIdIsNot(String email, long id);
 
     boolean existsByIdAndDeletedFalse(long id);
 }

@@ -6,6 +6,7 @@ import com.cg.repository.ITransferRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,5 +44,10 @@ public class TransferService implements ITransferService{
     @Override
     public List<TransferInfoDTO> getTransferInfo() {
         return transferRepository.getTransferInfo();
+    }
+
+    @Override
+    public boolean transfer(long senderID, long recipientID, BigDecimal amount) {
+        return transferRepository.transfer(senderID,recipientID,amount);
     }
 }

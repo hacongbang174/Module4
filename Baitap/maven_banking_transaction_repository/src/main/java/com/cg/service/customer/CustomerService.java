@@ -7,6 +7,7 @@ import com.cg.repository.ICustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
@@ -74,9 +75,10 @@ public class CustomerService implements ICustomerService{
     }
 
     @Override
-    public boolean existsByFullName(String name) {
-        return customerRepository.existsByFullName(name);
+    public void deposit(long id, BigDecimal amount) {
+        customerRepository.deposit(id,amount);
     }
+
 
     @Override
     public boolean existsByEmail(String email) {
@@ -86,16 +88,6 @@ public class CustomerService implements ICustomerService{
     @Override
     public boolean existsByPhone(String phone) {
         return customerRepository.existsByPhone(phone);
-    }
-
-    @Override
-    public boolean existsByPhoneAndIdIsNot(String phone, long id) {
-        return customerRepository.existsByPhoneAndIdIsNot(phone, id);
-    }
-
-    @Override
-    public boolean existsByEmailAndIdIsNot(String email, long id) {
-        return customerRepository.existsByEmailAndIdIsNot(email,id);
     }
 
     @Override
