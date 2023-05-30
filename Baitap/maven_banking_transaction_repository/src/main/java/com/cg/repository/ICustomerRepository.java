@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
+@Transactional
 public interface ICustomerRepository extends JpaRepository<Customer, Long> {
 
     @Query("SELECT NEW com.cg.model.dto.CustomerDTO (" +
@@ -46,18 +47,10 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
     boolean updateCustomer(@Param("id") long id,@Param("name") String name,@Param("email") String email,@Param("phone") String phone,@Param("address") String address);
 
     @Modifying
-    @Transactional
     @Query("UPDATE Customer c " +
             "SET c.deleted = TRUE " +
             "WHERE c.id = :id")
     void suspendCustomer(@Param("id") long id);
-
-    @Modifying
-    @Transactional
-    @Query("UPDATE Customer c " +
-            "SET c.balance = :amount " +
-            "WHERE c.id = :id")
-    void deposit(@Param("id") long id, @Param("amount") BigDecimal amount);
 
     List<Customer> findAllByIdIsNotAndDeletedFalse(long id);
 

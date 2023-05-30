@@ -75,8 +75,8 @@ public class CustomerService implements ICustomerService{
     }
 
     @Override
-    public void deposit(long id, BigDecimal amount) {
-        customerRepository.deposit(id,amount);
+    public boolean withdraw(long id, BigDecimal amount) {
+         return customerRepository.withdraw(id,amount);
     }
 
 
