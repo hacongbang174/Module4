@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="/layout/head :: head"></th:block>
+    <th:block th:replace="/layout/head :: head-admin"></th:block>
 </head>
 
 <body>
 <div id="wrapper">
-    <th:block th:replace="/layout/topbar :: topbar"></th:block>
+    <th:block th:replace="/layout/topbar :: topbar-admin"></th:block>
     <th:block th:replace="/layout/left-sidebar :: left-sidebar"></th:block>
 
     <div class="content-page">
@@ -32,7 +32,7 @@
             </div>
         </div>
     </div>
-    <th:block th:replace="/layout/footer :: footer"></th:block>
+    <th:block th:replace="/layout/footer :: footer-admin"></th:block>
 </div>
 
 <th:block th:replace="/layout/script :: script"></th:block>

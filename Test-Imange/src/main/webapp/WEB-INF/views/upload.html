@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tải lên ảnh</title>
+</head>
+<body>
+<h1>Tải lên ảnh</h1>
+<form method="post" id="uploadForm" enctype="multipart/form-data">
+    <input type="file" id="imageInput" name="image"/>
+    <button type="button" class="btn btnUpload">Tải lên</button>
+</form>
+
+<div id="imageContainer">
+    <img th:src="${imageUrl}" th:if="${imageUrl}" />
+</div>
+
+
+<script src="/assets/jquery/jquery-3.6.4.min.js"></script>
+<script>
+    $('#imageInput').on('change', (event) => {
+        let file = event.target.files[0];
+        let formData = new FormData();
+        formData.append('file', file);
+        console.log(formData)
+        //
+        // $.ajax({
+        //
+        //     headers: {
+        //         'accept': 'application/json',
+        //         'content-type': 'application/json'
+        //     },
+        //     type: 'POST',
+        //     url: 'http://localhost:8080/api/upload',
+        //     data: JSON.stringify(imageEntity)
+        // })
+        //     .done((data) => {
+        //         console.log(data)
+        //     })
+    })
+</script>
+</body>
+</html>

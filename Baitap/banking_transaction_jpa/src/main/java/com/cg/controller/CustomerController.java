@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiConsumer;
 
 @Controller
 @RequestMapping
@@ -88,7 +87,8 @@ public class CustomerController {
         List<String> messages = new ArrayList<>();
         ModelAndView modelAndView = new ModelAndView("/customers/suspend");
         currentCustomer.setDeleted(true);
-        customerService.save(currentCustomer);messages.add("Customer suspend successfully");
+        customerService.save(currentCustomer);
+        messages.add("Customer suspend successfully");
         modelAndView.addObject("currentCustomer", new Customer());
         modelAndView.addObject("messages", messages);
         return modelAndView;
@@ -140,7 +140,7 @@ public class CustomerController {
         Customer customerWithDraw = customerService.findById(customer.getId());
         if (errors.isEmpty()) {
             if(customerWithDraw.getBalance().compareTo(BigDecimal.valueOf(withdrawAmount)) < 0) {
-                errors.add("Tiền trong tài khoản hiện tại không đủ. Vui lòng rút số tiền nhỏ hơn " + customerWithDraw.getBalance());
+                errors.add("Số dư hiện tại không đủ. Vui lòng rút số tiền nhỏ hơn " + customerWithDraw.getBalance());
             }else {
                 BigDecimal balance = customerWithDraw.getBalance().subtract(BigDecimal.valueOf(withdrawAmount));
                 customerWithDraw.setBalance(balance);
